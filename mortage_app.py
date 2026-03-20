@@ -5,54 +5,44 @@ from datetime import date
 from dateutil.relativedelta import relativedelta
 import io
 from fpdf import FPDF
+# --- Custom CSS for Dark Mode Tiles (Matching Image) ---
 
 st.markdown("""
 <style>
-    /* 1. LIGHT MODE (Default) */
-    /* Light Gray card background to contrast against the White main page */
-    div[data-testid="stMetric"] {
-        background-color: #f0f2f6 !important; 
-        border: 1px solid #dcdfe4 !important;
-        border-left: 5px solid #00a0e9 !important; /* Blue accent restored */
-        border-radius: 10px !important;
-        padding: 15px 20px !important;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
+    /* Main Background of the app to match the tiles */
+    .stApp {
+        background-color: #0d1117;
     }
 
-    /* KPI Labels & Values for Light Mode (Ensures Dark Text) */
+    /* Target the Metric Containers */
+    div[data-testid="stMetric"] {
+        background-color: #161b22 !important;
+        border: 1px solid #30363d !important;
+        border-left: 5px solid #00a0e9 !important; /* The Blue Accent Line */
+        border-radius: 8px !important;
+        padding: 20px !important;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.3) !important;
+    }
+
+    /* KPI Labels (MOIC, IRR, etc.) */
     div[data-testid="stMetricLabel"] p {
-        color: #5f6368 !important;
+        color: #8b949e !important;
+        font-size: 0.85rem !important;
         font-weight: 600 !important;
         text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
     }
+
+    /* KPI Values (The Numbers) */
     div[data-testid="stMetricValue"] div {
-        color: #1c1e21 !important;
+        color: #ffffff !important;
+        font-size: 2.2rem !important;
         font-weight: 700 !important;
     }
 
-    /* 2. DARK MODE OVERRIDE */
-    /* Triggers when the system/browser theme is set to Dark */
-    @media (prefers-color-scheme: dark) {
-        div[data-testid="stMetric"] {
-            background-color: #161b22 !important; /* Your original Original Dark Gray */
-            border: 1px solid #30363d !important;
-            border-left: 5px solid #00a0e9 !important; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3) !important;
-        }
-
-        /* KPI Labels & Values for Dark Mode (Ensures White/Light Text) */
-        div[data-testid="stMetricLabel"] p {
-            color: #8b949e !important;
-        }
-        div[data-testid="stMetricValue"] div {
-            color: #ffffff !important;
-        }
-    }
-
-    /* Subtle hover effect for a premium feel */
-    div[data-testid="stMetric"]:hover {
-        border-color: #00a0e9 !important;
-        transition: 0.2s ease-in-out;
+    /* Horizontal line color */
+    hr {
+        border-top: 1px solid #30363d;
     }
 </style>
 """, unsafe_allow_html=True)
