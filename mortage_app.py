@@ -16,7 +16,7 @@ st.markdown("""
         border-left: 5px solid #00a0e9 !important; /* Your Blue Accent */
         border-radius: 10px !important;
         padding: 15px 20px !important;
-        box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px !important;
+        box-shadow: rgba(0, 0, 0, 0.40) 0px 1px 2px 0px !important;
     }
 
     /* 2. The KPI Label (e.g., "Monthly Payment") */
