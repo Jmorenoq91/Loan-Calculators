@@ -97,7 +97,7 @@ actual_end_date = df_schedule["Payment Date"].iloc[-1]
 # --- 1) KPI Display (2x3 Layout) ---
 r1_col1, r1_col2, r1_col3 = st.columns(3)
 r1_col1.metric("DOWN PAYMENT", f"${down_payment_amt:,.0f}")
-r1_col2.metric("MONTHLY PAYMENT", f"${min(monthly_payment_std + extra_payment, loan_amount * (1 + monthly_rate):,.2f}")
+r1_col2.metric("MONTHLY PAYMENT", f"${min(monthly_payment_std + extra_payment, loan_amount * (1 + monthly_rate)):,.2f}")
 r1_col3.metric("END DATE", actual_end_date.strftime("%b %Y"))
 
 r2_col1, r2_col2, r2_col3 = st.columns(3)
