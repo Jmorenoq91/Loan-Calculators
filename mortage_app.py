@@ -82,28 +82,47 @@ total_interest = total_paid - loan_amount
 ending_date = origination_date + relativedelta(months=number_of_payments)
 
 # --- Amortization Schedule Data ---
+# --- Amortization Schedule Data ---
 schedule = []
 rem_bal = loan_amount
+
 for i in range(1, int(number_of_payments) + 1):
     int_exp = rem_bal * monthly_rate
+    
+    # This correctly prevents overpayment
     realized_payment = min(monthly_payment + extra_payment, rem_bal + int_exp)
+    
     cap_amort = realized_payment - int_exp
     rem_bal -= cap_amort
+    
+    # Store data
+    payment_date = origination_date + relativedelta(months=i)
     schedule.append({
         "Month": i,
-        "Payment Date": (origination_date + relativedelta(months=i)).strftime("%Y-%m-%d"),
+        "Payment Date": payment_date,
         "Payment": realized_payment,
         "Interest Expense": int_exp,
         "Capital Amortization": cap_amort,
-        "Ending Balance": rem_bal
+        "Ending Balance": max(0, rem_bal)
     })
+
+    # Logical Break: Stops the dataframe from being filled with 0-value rows
+    if rem_bal <= 0.01: 
+        break
+
 df_schedule = pd.DataFrame(schedule)
 
-# --- 1) KPIs
+# --- Dynamic KPI Calculations ---
+# These now reflect the SHORTER schedule thanks to the 'break'
+total_interest = df_schedule["Interest Expense"].sum()
+total_paid = df_schedule["Payment"].sum()
+actual_end_date = df_schedule["Payment Date"].iloc[-1] 
+
+# --- KPI Display ---
 rows1 = st.columns(3)
 rows1[0].metric("DOWN PAYMENT", f"${down_payment_amt:,.0f}")
 rows1[1].metric("MONTHLY PAYMENT", f"${monthly_payment + extra_payment:,.2f}")
-rows1[2].metric("END DATE", ending_date.strftime("%b %Y"))
+rows1[2].metric("END DATE", actual_end_date.strftime("%b %Y"))
 
 rows2 = st.columns(3)
 rows2[0].metric("LOAN AMOUNT", f"${loan_amount:,.0f}")
