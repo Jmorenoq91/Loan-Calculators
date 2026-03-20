@@ -111,14 +111,20 @@ st.divider()
 c1, c2 = st.columns(2)
 with c1:
     st.subheader("📉 Debt Balance Over Time")
-    # Convert date to string for better chart labeling
     chart_df = df_schedule.copy()
+    
+    # 1. Convert to pandas datetime first
+    chart_df["Payment Date"] = pd.to_datetime(chart_df["Payment Date"])
+    
+    # 2. Now you can use .dt safely
     chart_df["Date"] = chart_df["Payment Date"].dt.strftime("%Y-%m-%d")
+    
     st.area_chart(chart_df.set_index("Date")["Ending Balance"])
 
 with c2:
     st.subheader("📊 Payment Structure")
     st.bar_chart(chart_df.set_index("Date")[["Capital Amortization", "Interest Expense"]])
+
 
 # --- Amortization Table ---
 st.subheader("📑 Full Amortization Schedule")
