@@ -8,48 +8,51 @@ from fpdf import FPDF
 
 st.markdown("""
 <style>
-    /* 1. UNIVERSAL CARD STYLING */
-    div[data-testid="stMetric"] {
-        border-radius: 10px !important;
-        padding: 15px 20px !important;
-        border-left: 5px solid #00a0e9 !important; /* Your signature blue shade */
-        transition: transform 0.2s ease-in-out;
-    }
-
-    /* 2. LIGHT MODE: Soft Light Gray Background + Dark Text */
-    /* This applies when the system is in Light Mode */
+    /* 1. LIGHT MODE (Default) */
+    /* Light Gray card background to contrast against the White main page */
     div[data-testid="stMetric"] {
         background-color: #f0f2f6 !important; 
         border: 1px solid #dcdfe4 !important;
+        border-left: 5px solid #00a0e9 !important; /* Blue accent restored */
+        border-radius: 10px !important;
+        padding: 15px 20px !important;
         box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
+    }
+
+    /* KPI Labels & Values for Light Mode (Ensures Dark Text) */
+    div[data-testid="stMetricLabel"] p {
+        color: #5f6368 !important;
+        font-weight: 600 !important;
+        text-transform: uppercase !important;
     }
     div[data-testid="stMetricValue"] div {
         color: #1c1e21 !important;
-    }
-    div[data-testid="stMetricLabel"] p {
-        color: #5f6368 !important;
+        font-weight: 700 !important;
     }
 
-    /* 3. DARK MODE: Your Original Dark Gray + White Text */
-    /* This overrides the above settings ONLY when Dark Mode is active */
+    /* 2. DARK MODE OVERRIDE */
+    /* Triggers when the system/browser theme is set to Dark */
     @media (prefers-color-scheme: dark) {
         div[data-testid="stMetric"] {
-            background-color: #161b22 !important; 
+            background-color: #161b22 !important; /* Your original Original Dark Gray */
             border: 1px solid #30363d !important;
+            border-left: 5px solid #00a0e9 !important; 
             box-shadow: 0 4px 6px rgba(0,0,0,0.3) !important;
+        }
+
+        /* KPI Labels & Values for Dark Mode (Ensures White/Light Text) */
+        div[data-testid="stMetricLabel"] p {
+            color: #8b949e !important;
         }
         div[data-testid="stMetricValue"] div {
             color: #ffffff !important;
         }
-        div[data-testid="stMetricLabel"] p {
-            color: #8b949e !important;
-        }
     }
 
-    /* Hover effect for a premium feel */
+    /* Subtle hover effect for a premium feel */
     div[data-testid="stMetric"]:hover {
-        transform: translateY(-2px);
         border-color: #00a0e9 !important;
+        transition: 0.2s ease-in-out;
     }
 </style>
 """, unsafe_allow_html=True)
