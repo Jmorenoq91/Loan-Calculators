@@ -105,7 +105,7 @@ for i in range(1, int(number_of_payments) + 1):
         "Payment": realized_payment
         "Interest Expense": int_exp,
         "Capital Amortization": cap_amort,
-        "Ending Balance": max(0, rem_bal)
+        "Ending Balance": rem_bal
     })
 df_schedule = pd.DataFrame(schedule)
 
