@@ -9,51 +9,40 @@ from fpdf import FPDF
 # --- Page Config ---
 st.markdown("""
 <style>
-    /* 1. UNIVERSAL CARD STYLING */
+    /* 1. The Metric Card Container */
     div[data-testid="stMetric"] {
+        background-color: var(--secondary-background-color) !important;
+        border: 1px solid var(--border-color) !important;
+        border-left: 5px solid #00a0e9 !important; /* Your Blue Accent */
         border-radius: 10px !important;
         padding: 15px 20px !important;
-        border-left: 5px solid #00a0e9 !important; /* Your signature blue shade */
-        transition: transform 0.2s ease-in-out;
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px !important;
     }
 
-    /* 2. LIGHT MODE: Soft Light Gray Background + Dark Text */
-    /* This applies when the system is in Light Mode */
-    div[data-testid="stMetric"] {
-        background-color: #f0f2f6 !important; 
-        border: 1px solid #dcdfe4 !important;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
-    }
-    div[data-testid="stMetricValue"] div {
-        color: #1c1e21 !important;
-    }
+    /* 2. The KPI Label (e.g., "Monthly Payment") */
     div[data-testid="stMetricLabel"] p {
-        color: #5f6368 !important;
+        color: var(--text-color) !important;
+        opacity: 0.8; /* Makes the label slightly softer than the number */
+        font-size: 0.85rem !important;
+        font-weight: 600 !important;
+        text-transform: uppercase !important;
     }
 
-    /* 3. DARK MODE: Your Original Dark Gray + White Text */
-    /* This overrides the above settings ONLY when Dark Mode is active */
-    @media (prefers-color-scheme: dark) {
-        div[data-testid="stMetric"] {
-            background-color: #161b22 !important; 
-            border: 1px solid #30363d !important;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3) !important;
-        }
-        div[data-testid="stMetricValue"] div {
-            color: #ffffff !important;
-        }
-        div[data-testid="stMetricLabel"] p {
-            color: #8b949e !important;
-        }
+    /* 3. The Big KPI Value ($ Number) */
+    div[data-testid="stMetricValue"] div {
+        color: var(--text-color) !important;
+        font-size: 2rem !important;
+        font-weight: 700 !important;
     }
 
-    /* Hover effect for a premium feel */
+    /* Bonus: Add a subtle lift effect when hovering */
     div[data-testid="stMetric"]:hover {
-        transform: translateY(-2px);
         border-color: #00a0e9 !important;
+        transition: 0.3s ease;
     }
 </style>
 """, unsafe_allow_html=True)
+
 st.title("🏠 Mortgage Calculator")
 
 # --- Sidebar Inputs ---
