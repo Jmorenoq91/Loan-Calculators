@@ -97,11 +97,12 @@ rem_bal = loan_amount
 for i in range(1, int(number_of_payments) + 1):
     int_exp = rem_bal * monthly_rate
     cap_amort = monthly_payment - int_exp
+    realized_payment = min(monthly_payment * 1.0, rem_bal + int_exp)
     rem_bal -= cap_amort
     schedule.append({
         "Month": i,
         "Payment Date": (origination_date + relativedelta(months=i)).strftime("%Y-%m-%d"),
-        "Payment": monthly_payment,
+        "Payment": realized_payment
         "Interest Expense": int_exp,
         "Capital Amortization": cap_amort,
         "Ending Balance": max(0, rem_bal)
