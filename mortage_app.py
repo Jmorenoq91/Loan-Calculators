@@ -96,8 +96,8 @@ schedule = []
 rem_bal = loan_amount
 for i in range(1, int(number_of_payments) + 1):
     int_exp = rem_bal * monthly_rate
-    cap_amort = monthly_payment - int_exp
     realized_payment = min(monthly_payment * 1.2, rem_bal + int_exp)
+    cap_amort = realized_payment - int_exp
     rem_bal -= cap_amort
     schedule.append({
         "Month": i,
