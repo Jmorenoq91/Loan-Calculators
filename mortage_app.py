@@ -61,6 +61,7 @@ with st.sidebar:
         down_payment_pct = st.slider("Down Payment %", 10, 90, 20)
         annual_interest_rate = st.number_input("Annual Interest Rate (%)", min_value=0.0, value=5.0, step=0.1)
         loan_term_years = st.slider("Loan Term (Years)", 5, 30, 20, step=5)
+        extra_payment = st.number_input("Extra Payment ($)", min_value=0.0, value=0, step=10.0)
 
 # --- Financial Calculations ---
 down_payment_amt = prop_price * (down_payment_pct / 100)
@@ -81,7 +82,7 @@ ending_date = origination_date + relativedelta(months=number_of_payments)
 rows1 = st.columns(3)
 
 rows1[0].metric("DOWN PAYMENT", f"${down_payment_amt:,.0f}")
-rows1[1].metric("MONTHLY PAYMENT", f"${monthly_payment:,.2f}")
+rows1[1].metric("MONTHLY PAYMENT", f"${monthly_payment + extra_payment:,.2f}")
 rows1[2].metric("END DATE", ending_date.strftime("%b %Y"))
 
 rows2 = st.columns(3)
@@ -96,7 +97,7 @@ schedule = []
 rem_bal = loan_amount
 for i in range(1, int(number_of_payments) + 1):
     int_exp = rem_bal * monthly_rate
-    realized_payment = min(monthly_payment * 1.2, rem_bal + int_exp)
+    realized_payment = min(monthly_payment + extra_payment, rem_bal + int_exp)
     cap_amort = realized_payment - int_exp
     rem_bal -= cap_amort
     schedule.append({
