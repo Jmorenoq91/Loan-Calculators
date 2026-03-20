@@ -81,20 +81,6 @@ total_paid = monthly_payment * number_of_payments
 total_interest = total_paid - loan_amount
 ending_date = origination_date + relativedelta(months=number_of_payments)
 
-# --- 1) KPIs
-rows1 = st.columns(3)
-
-rows1[0].metric("DOWN PAYMENT", f"${down_payment_amt:,.0f}")
-rows1[1].metric("MONTHLY PAYMENT", f"${realized_payment:,.2f}")
-rows1[2].metric("END DATE", ending_date.strftime("%b %Y"))
-
-rows2 = st.columns(3)
-rows2[0].metric("LOAN AMOUNT", f"${loan_amount:,.0f}")
-rows2[1].metric("TOTAL INTEREST", f"${total_interest:,.0f}")
-rows2[2].metric("TOTAL COST", f"${total_paid:,.0f}")
-
-st.divider()
-
 # --- Amortization Schedule Data ---
 schedule = []
 rem_bal = loan_amount
@@ -112,6 +98,19 @@ for i in range(1, int(number_of_payments) + 1):
         "Ending Balance": rem_bal
     })
 df_schedule = pd.DataFrame(schedule)
+
+# --- 1) KPIs
+rows1 = st.columns(3)
+rows1[0].metric("DOWN PAYMENT", f"${down_payment_amt:,.0f}")
+rows1[1].metric("MONTHLY PAYMENT", f"${realized_payment:,.2f}")
+rows1[2].metric("END DATE", ending_date.strftime("%b %Y"))
+
+rows2 = st.columns(3)
+rows2[0].metric("LOAN AMOUNT", f"${loan_amount:,.0f}")
+rows2[1].metric("TOTAL INTEREST", f"${total_interest:,.0f}")
+rows2[2].metric("TOTAL COST", f"${total_paid:,.0f}")
+
+st.divider()
 
 # --- Visualizations ---
 c1, c2 = st.columns(2)
