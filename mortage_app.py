@@ -69,7 +69,7 @@ down_payment_amt = prop_price * (down_payment_pct / 100)
 loan_amount = prop_price - down_payment_amt
 monthly_rate = (annual_interest_rate / 100) / 12
 number_of_payments = loan_term_years * 12
-realized_payment = min(monthly_payment + extra_payment, loan_amount * (1 + monthly_rate))
+realized_payment = min(monthly_payment + extra_payment, loan_amount * (1 + monthly_rate)) 
 
 
 
