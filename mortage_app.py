@@ -9,36 +9,55 @@ from fpdf import FPDF
 
 st.markdown("""
 <style>
-    /* 1. The Metric Card Container */
-    div[data-testid="stMetric"] {
-        background-color: var(--secondary-background-color) !important;
-        border: 1px solid var(--border-color) !important;
-        border-left: 5px solid #00a0e9 !important; /* Your Blue Accent */
-        border-radius: 10px !important;
-        padding: 15px 20px !important;
-        box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px !important;
+    /* 1. REMOVE WASTED SPACE (Full Width) */
+    .block-container {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        max-width: 98% !important;
     }
 
-    /* 2. The KPI Label (e.g., "Monthly Payment") */
+    /* 2. ADAPTIVE KPI CARDS with custom grays */
+    div[data-testid="stMetric"] {
+        border-radius: 10px !important;
+        padding: 15px 20px !important;
+        border-left: 5px solid #00a0e9 !important; /* Blue Accent */
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px !important;
+        transition: 0.3s ease;
+    }
+
+    /* LIGHT MODE CUSTOMIZATION (Light Gray Background) */
+    [data-theme="light"] div[data-testid="stMetric"] {
+        background-color: #f0f2f6 !important; /* Your custom light gray */
+        border: 1px solid #dcdfe4 !important;
+        border-left: 5px solid #00a0e9 !important;
+    }
+
+    /* DARK MODE CUSTOMIZATION (Your original Dark Gray) */
+    [data-theme="dark"] div[data-testid="stMetric"] {
+        background-color: #161b22 !important; /* Your original dark gray */
+        border: 1px solid #30363d !important;
+        border-left: 5px solid #00a0e9 !important;
+    }
+
+    /* 3. TEXT COLOR & FONT SIZING */
     div[data-testid="stMetricLabel"] p {
         color: var(--text-color) !important;
-        opacity: 0.8; /* Makes the label slightly softer than the number */
+        opacity: 0.8;
         font-size: 0.85rem !important;
         font-weight: 600 !important;
         text-transform: uppercase !important;
     }
 
-    /* 3. The Big KPI Value ($ Number) */
     div[data-testid="stMetricValue"] div {
         color: var(--text-color) !important;
-        font-size: 2rem !important;
+        font-size: 2.2rem !important;
         font-weight: 700 !important;
     }
 
-    /* Bonus: Add a subtle lift effect when hovering */
+    /* Hover effect */
     div[data-testid="stMetric"]:hover {
         border-color: #00a0e9 !important;
-        transition: 0.3s ease;
+        transform: translateY(-2px);
     }
 </style>
 """, unsafe_allow_html=True)
