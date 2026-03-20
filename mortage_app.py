@@ -69,6 +69,9 @@ down_payment_amt = prop_price * (down_payment_pct / 100)
 loan_amount = prop_price - down_payment_amt
 monthly_rate = (annual_interest_rate / 100) / 12
 number_of_payments = loan_term_years * 12
+realized_payment = min(monthly_payment + extra_payment, loan_amount * (1 + monthly_rate)
+
+
 
 if monthly_rate > 0:
     monthly_payment = loan_amount * (monthly_rate * (1 + monthly_rate)**number_of_payments) / ((1 + monthly_rate)**number_of_payments - 1)
@@ -83,7 +86,7 @@ ending_date = origination_date + relativedelta(months=number_of_payments)
 rows1 = st.columns(3)
 
 rows1[0].metric("DOWN PAYMENT", f"${down_payment_amt:,.0f}")
-rows1[1].metric("MONTHLY PAYMENT", f"${monthly_payment + extra_payment:,.2f}")
+rows1[1].metric("MONTHLY PAYMENT", f"${realized_payment:,.2f}")
 rows1[2].metric("END DATE", ending_date.strftime("%b %Y"))
 
 rows2 = st.columns(3)
