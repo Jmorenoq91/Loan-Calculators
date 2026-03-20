@@ -9,39 +9,45 @@ from fpdf import FPDF
 # --- Page Config ---
 st.set_page_config(page_title="Mortgage Pro 🏠", layout="wide")
 
-# --- Adaptive CSS (Works for both Light and Dark Mode) ---
+
+# --- Adaptive CSS (Universal Mode) ---
 st.markdown("""
 <style>
-    /* Target the Metric Containers */
+    /* 1. Metric Container: Uses adaptive background and border */
     div[data-testid="stMetric"] {
         background-color: var(--secondary-background-color) !important;
         border: 1px solid var(--border-color) !important;
-        border-left: 5px solid #00a0e9 !important; /* Keep the blue accent */
-        border-radius: 8px !important;
-        padding: 20px !important;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+        border-left: 5px solid #00a0e9 !important; /* Your signature blue line */
+        border-radius: 10px !important;
+        padding: 15px 20px !important;
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px !important;
     }
 
-    /* KPI Labels - Adaptive Text Color */
+    /* 2. KPI Labels: Ensures text contrast is correct */
     div[data-testid="stMetricLabel"] p {
         color: var(--text-color) !important;
-        opacity: 0.8;
-        font-size: 0.85rem !important;
+        font-size: 0.8rem !important;
         font-weight: 600 !important;
         text-transform: uppercase !important;
-        letter-spacing: 0.05em !important;
+        opacity: 0.7; /* Softens the label vs the value */
     }
 
-    /* KPI Values - Adaptive Text Color */
+    /* 3. KPI Values: Large and readable */
     div[data-testid="stMetricValue"] div {
         color: var(--text-color) !important;
-        font-size: 2.2rem !important;
+        font-size: 1.8rem !important;
         font-weight: 700 !important;
     }
 
-    /* Make the charts and tables blend in */
-    .stTable, .stDataFrame {
-        border: 1px solid var(--border-color);
+    /* 4. Fix for charts in light mode: ensuring titles are visible */
+    .stMarkdown h2, .stMarkdown h3 {
+        color: var(--text-color) !important;
+    }
+
+    /* 5. Optional: Subtle hover effect for the tiles */
+    div[data-testid="stMetric"]:hover {
+        border-color: #00a0e9 !important;
+        transition: 0.3s ease;
     }
 </style>
 """, unsafe_allow_html=True)
