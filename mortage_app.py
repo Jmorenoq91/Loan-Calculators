@@ -78,12 +78,12 @@ total_interest = total_paid - loan_amount
 ending_date = origination_date + relativedelta(months=number_of_payments)
 
 # --- 1) KPIs (5 Columns) ---
-cols = st.columns(4)
+cols = st.columns(5)
 cols[0].metric("MONTHLY PMT", f"${monthly_payment:,.2f}")
 cols[1].metric("INITIAL LOAN AMT", f"${loan_amount:,.0f}")
 cols[2].metric("TOTAL INTEREST", f"${total_interest:,.0f}")
 cols[3].metric("TOTAL COST", f"${total_paid:,.0f}")
-#cols[4].metric("END DATE", ending_date.strftime("%b %Y"))
+cols[5].metric("END DATE", ending_date.strftime("%b %Y"))
 
 st.divider()
 
