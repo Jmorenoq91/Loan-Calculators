@@ -81,7 +81,7 @@ ending_date = origination_date + relativedelta(months=number_of_payments)
 rows1 = st.columns(3)
 
 rows1[0].metric("DOWN PAYMENT", f"${down_payment_amt:,.0f}")
-rows1[1].metric("MONTHLY PMT", f"${monthly_payment:,.2f}")
+rows1[1].metric("MONTHLY PAYMENT", f"${monthly_payment:,.2f}")
 rows1[2].metric("END DATE", ending_date.strftime("%b %Y"))
 
 rows2 = st.columns(3)
