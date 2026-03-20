@@ -10,48 +10,51 @@ from fpdf import FPDF
 st.set_page_config(page_title="Mortgage Pro 🏠", layout="wide")
 st.markdown("""
 <style>
-    /* 1. UNIVERSAL CARD STYLING */
+    /* 1. LIGHT MODE (Default) */
+    /* Metric Container: Light Gray background to contrast against White page */
     div[data-testid="stMetric"] {
+        background-color: #f0f2f6 !important; 
+        border: 1px solid #dcdfe4 !important;
+        border-left: 5px solid #00a0e9 !important; /* The Blue Accent */
         border-radius: 10px !important;
         padding: 15px 20px !important;
-        border-left: 5px solid #00a0e9 !important; /* The Blue Shade Accent */
-        transition: transform 0.2s ease-in-out;
-    }
-
-    /* 2. LIGHT MODE (Default) - Light cards with Dark Text */
-    div[data-testid="stMetric"] {
-        background-color: #f0f2f6 !important; /* Soft light gray for contrast */
-        border: 1px solid #dcdfe4 !important;
-        border-left: 5px solid #00a0e9 !important;
         box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
     }
-    div[data-testid="stMetricValue"] div {
-        color: #1c1e21 !important; /* Dark bold text */
-    }
+
+    /* KPI Labels & Values for Light Mode (Dark Text) */
     div[data-testid="stMetricLabel"] p {
-        color: #5f6368 !important; /* Muted gray label */
+        color: #5f6368 !important;
+        font-weight: 600 !important;
+        text-transform: uppercase !important;
+    }
+    div[data-testid="stMetricValue"] div {
+        color: #1c1e21 !important;
+        font-weight: 700 !important;
     }
 
-    /* 3. DARK MODE OVERRIDE - Dark cards with White Text */
+    /* 2. DARK MODE OVERRIDE */
+    /* Triggers when the user's system/browser is set to Dark */
     @media (prefers-color-scheme: dark) {
         div[data-testid="stMetric"] {
-            background-color: #161b22 !important; /* Your original original dark gray */
+            background-color: #161b22 !important; /* Your original Original Dark Gray */
             border: 1px solid #30363d !important;
-            border-left: 5px solid #00a0e9 !important;
+            border-left: 5px solid #00a0e9 !important; 
             box-shadow: 0 4px 6px rgba(0,0,0,0.3) !important;
         }
-        div[data-testid="stMetricValue"] div {
-            color: #ffffff !important; /* White bold text */
-        }
+
+        /* KPI Labels & Values for Dark Mode (White/Gray Text) */
         div[data-testid="stMetricLabel"] p {
-            color: #8b949e !important; /* Light gray label */
+            color: #8b949e !important;
+        }
+        div[data-testid="stMetricValue"] div {
+            color: #ffffff !important;
         }
     }
-    
-    /* Hover effect to make it feel premium */
+
+    /* Subtle hover effect */
     div[data-testid="stMetric"]:hover {
-        transform: translateY(-2px);
         border-color: #00a0e9 !important;
+        transition: 0.2s ease-in-out;
     }
 </style>
 """, unsafe_allow_html=True)
