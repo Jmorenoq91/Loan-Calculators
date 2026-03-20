@@ -9,39 +9,36 @@ from fpdf import FPDF
 
 st.markdown("""
 <style>
-    /* 1. DEFAULT / LIGHT MODE SETTINGS */
+    /* 1. The Metric Card Container */
     div[data-testid="stMetric"] {
-        background-color: #f0f2f6 !important; /* Soft light gray for contrast on white */
-        border: 1px solid #dcdfe4 !important;
-        border-left: 5px solid #00a0e9 !important;
+        background-color: var(--secondary-background-color) !important;
+        border: 1px solid var(--border-color) !important;
+        border-left: 5px solid #00a0e9 !important; /* Your Blue Accent */
         border-radius: 10px !important;
         padding: 15px 20px !important;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px !important;
     }
 
-    div[data-testid="stMetricValue"] div {
-        color: #1c1e21 !important; /* High contrast dark text */
-    }
-
+    /* 2. The KPI Label (e.g., "Monthly Payment") */
     div[data-testid="stMetricLabel"] p {
-        color: #5f6368 !important; /* Muted gray label */
+        color: var(--text-color) !important;
+        opacity: 0.8; /* Makes the label slightly softer than the number */
+        font-size: 0.85rem !important;
+        font-weight: 600 !important;
+        text-transform: uppercase !important;
     }
 
-    /* 2. DARK MODE OVERRIDE */
-    @media (prefers-color-scheme: dark) {
-        div[data-testid="stMetric"] {
-            background-color: #161b22 !important; /* Your original original dark gray */
-            border: 1px solid #30363d !important;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3) !important;
-        }
+    /* 3. The Big KPI Value ($ Number) */
+    div[data-testid="stMetricValue"] div {
+        color: var(--text-color) !important;
+        font-size: 2rem !important;
+        font-weight: 700 !important;
+    }
 
-        div[data-testid="stMetricValue"] div {
-            color: #ffffff !important;
-        }
-
-        div[data-testid="stMetricLabel"] p {
-            color: #8b949e !important;
-        }
+    /* Bonus: Add a subtle lift effect when hovering */
+    div[data-testid="stMetric"]:hover {
+        border-color: #00a0e9 !important;
+        transition: 0.3s ease;
     }
 </style>
 """, unsafe_allow_html=True)
