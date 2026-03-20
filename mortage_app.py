@@ -9,31 +9,40 @@ from fpdf import FPDF
 # --- Page Config ---
 st.set_page_config(page_title="Mortgage Pro 🏠", layout="wide")
 
-# --- Custom CSS for Dark Mode Tiles ---
+# --- Adaptive CSS (Works for both Light and Dark Mode) ---
 st.markdown("""
 <style>
-    .stApp { background-color: #0d1117; }
+    /* Target the Metric Containers */
     div[data-testid="stMetric"] {
-        background-color: #161b22 !important;
-        border: 1px solid #30363d !important;
-        border-left: 5px solid #00a0e9 !important;
+        background-color: var(--secondary-background-color) !important;
+        border: 1px solid var(--border-color) !important;
+        border-left: 5px solid #00a0e9 !important; /* Keep the blue accent */
         border-radius: 8px !important;
         padding: 20px !important;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.3) !important;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
     }
+
+    /* KPI Labels - Adaptive Text Color */
     div[data-testid="stMetricLabel"] p {
-        color: #8b949e !important;
+        color: var(--text-color) !important;
+        opacity: 0.8;
         font-size: 0.85rem !important;
         font-weight: 600 !important;
         text-transform: uppercase !important;
         letter-spacing: 0.05em !important;
     }
+
+    /* KPI Values - Adaptive Text Color */
     div[data-testid="stMetricValue"] div {
-        color: #ffffff !important;
+        color: var(--text-color) !important;
         font-size: 2.2rem !important;
         font-weight: 700 !important;
     }
-    hr { border-top: 1px solid #30363d; }
+
+    /* Make the charts and tables blend in */
+    .stTable, .stDataFrame {
+        border: 1px solid var(--border-color);
+    }
 </style>
 """, unsafe_allow_html=True)
 
