@@ -58,7 +58,7 @@ with st.sidebar:
     with st.expander("🛠️ Loan Parameters", expanded=True):
         origination_date = st.date_input("Origination Date", date.today())
         prop_price = st.number_input("Property Price ($)", min_value=0.0, value=100000.0, step=1000.0)
-        down_payment_pct = st.slider("Down Payment %", 10, 90, 30)
+        down_payment_pct = st.slider("Down Payment %", 10, 90, 20)
         annual_interest_rate = st.number_input("Annual Interest Rate (%)", min_value=0.0, value=5.0, step=0.1)
         loan_term_years = st.slider("Loan Term (Years)", 5, 30, 20, step=5)
 
