@@ -8,53 +8,39 @@ from fpdf import FPDF
 
 # --- Page Config ---
 st.set_page_config(page_title="Mortgage Pro 🏠", layout="wide")
+
 st.markdown("""
 <style>
-    /* 1. LIGHT MODE (Default) */
-    /* Metric Container: Light Gray background to contrast against White page */
+    /* 1. The Metric Card Container */
     div[data-testid="stMetric"] {
-        background-color: #f0f2f6 !important; 
-        border: 1px solid #dcdfe4 !important;
-        border-left: 5px solid #00a0e9 !important; /* The Blue Accent */
+        background-color: var(--secondary-background-color) !important;
+        border: 1px solid var(--border-color) !important;
+        border-left: 5px solid #00a0e9 !important; /* Your Blue Accent */
         border-radius: 10px !important;
         padding: 15px 20px !important;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px !important;
     }
 
-    /* KPI Labels & Values for Light Mode (Dark Text) */
+    /* 2. The KPI Label (e.g., "Monthly Payment") */
     div[data-testid="stMetricLabel"] p {
-        color: #5f6368 !important;
+        color: var(--text-color) !important;
+        opacity: 0.8; /* Makes the label slightly softer than the number */
+        font-size: 0.85rem !important;
         font-weight: 600 !important;
         text-transform: uppercase !important;
     }
+
+    /* 3. The Big KPI Value ($ Number) */
     div[data-testid="stMetricValue"] div {
-        color: #1c1e21 !important;
+        color: var(--text-color) !important;
+        font-size: 2rem !important;
         font-weight: 700 !important;
     }
 
-    /* 2. DARK MODE OVERRIDE */
-    /* Triggers when the user's system/browser is set to Dark */
-    @media (prefers-color-scheme: dark) {
-        div[data-testid="stMetric"] {
-            background-color: #161b22 !important; /* Your original Original Dark Gray */
-            border: 1px solid #30363d !important;
-            border-left: 5px solid #00a0e9 !important; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3) !important;
-        }
-
-        /* KPI Labels & Values for Dark Mode (White/Gray Text) */
-        div[data-testid="stMetricLabel"] p {
-            color: #8b949e !important;
-        }
-        div[data-testid="stMetricValue"] div {
-            color: #ffffff !important;
-        }
-    }
-
-    /* Subtle hover effect */
+    /* Bonus: Add a subtle lift effect when hovering */
     div[data-testid="stMetric"]:hover {
         border-color: #00a0e9 !important;
-        transition: 0.2s ease-in-out;
+        transition: 0.3s ease;
     }
 </style>
 """, unsafe_allow_html=True)
