@@ -9,40 +9,39 @@ from fpdf import FPDF
 
 st.markdown("""
 <style>
-    /* Main Background of the app to match the tiles */
-    .stApp {
-        background-color: #0d1117;
-    }
-
-    /* Target the Metric Containers */
+    /* 1. DEFAULT / LIGHT MODE SETTINGS */
     div[data-testid="stMetric"] {
-        background-color: #161b22 !important;
-        border: 1px solid #30363d !important;
-        border-left: 5px solid #00a0e9 !important; /* The Blue Accent Line */
-        border-radius: 8px !important;
-        padding: 20px !important;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.3) !important;
+        background-color: #f0f2f6 !important; /* Soft light gray for contrast on white */
+        border: 1px solid #dcdfe4 !important;
+        border-left: 5px solid #00a0e9 !important;
+        border-radius: 10px !important;
+        padding: 15px 20px !important;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
     }
 
-    /* KPI Labels (MOIC, IRR, etc.) */
-    div[data-testid="stMetricLabel"] p {
-        color: #8b949e !important;
-        font-size: 0.85rem !important;
-        font-weight: 600 !important;
-        text-transform: uppercase !important;
-        letter-spacing: 0.05em !important;
-    }
-
-    /* KPI Values (The Numbers) */
     div[data-testid="stMetricValue"] div {
-        color: #ffffff !important;
-        font-size: 2.2rem !important;
-        font-weight: 700 !important;
+        color: #1c1e21 !important; /* High contrast dark text */
     }
 
-    /* Horizontal line color */
-    hr {
-        border-top: 1px solid #30363d;
+    div[data-testid="stMetricLabel"] p {
+        color: #5f6368 !important; /* Muted gray label */
+    }
+
+    /* 2. DARK MODE OVERRIDE */
+    @media (prefers-color-scheme: dark) {
+        div[data-testid="stMetric"] {
+            background-color: #161b22 !important; /* Your original original dark gray */
+            border: 1px solid #30363d !important;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3) !important;
+        }
+
+        div[data-testid="stMetricValue"] div {
+            color: #ffffff !important;
+        }
+
+        div[data-testid="stMetricLabel"] p {
+            color: #8b949e !important;
+        }
     }
 </style>
 """, unsafe_allow_html=True)
