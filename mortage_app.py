@@ -8,54 +8,59 @@ from fpdf import FPDF
 
 # --- Page Config ---
 st.set_page_config(page_title="Mortgage Pro 🏠", layout="wide")
-
 st.markdown("""
 <style>
-    /* 1. LIGHT MODE (Default) */
-    /* Light Gray card background to contrast against the White main page */
+    /* ===== LIGHT MODE (Default) ===== */
+    [data-testid="stMetric"],
+    [data-testid="stMetric"] *,
     div[data-testid="stMetric"] {
-        background-color: #f0f2f6 !important; 
-        border: 1px solid #dcdfe4 !important;
-        border-left: 5px solid #00a0e9 !important; /* Blue accent restored */
+        background-color: #e8eaed !important;
+        border: 1px solid #c8ccd2 !important;
+        border-left: 5px solid #00a0e9 !important;
         border-radius: 10px !important;
         padding: 15px 20px !important;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.08) !important;
     }
 
-    /* KPI Labels & Values for Light Mode (Ensures Dark Text) */
-    div[data-testid="stMetricLabel"] p {
+    [data-testid="stMetricLabel"] > div,
+    [data-testid="stMetricLabel"] p {
         color: #5f6368 !important;
         font-weight: 600 !important;
         text-transform: uppercase !important;
+        font-size: 0.75rem !important;
     }
-    div[data-testid="stMetricValue"] div {
+
+    [data-testid="stMetricValue"] > div {
         color: #1c1e21 !important;
         font-weight: 700 !important;
     }
 
-    /* 2. DARK MODE OVERRIDE */
-    /* Triggers when the system/browser theme is set to Dark */
+    /* ===== DARK MODE OVERRIDE ===== */
     @media (prefers-color-scheme: dark) {
+        [data-testid="stMetric"],
         div[data-testid="stMetric"] {
-            background-color: #161b22 !important; /* Your original Original Dark Gray */
+            background-color: #161b22 !important;
             border: 1px solid #30363d !important;
-            border-left: 5px solid #00a0e9 !important; 
+            border-left: 5px solid #00a0e9 !important;
             box-shadow: 0 4px 6px rgba(0,0,0,0.3) !important;
         }
 
-        /* KPI Labels & Values for Dark Mode (Ensures White/Light Text) */
-        div[data-testid="stMetricLabel"] p {
+        [data-testid="stMetricLabel"] > div,
+        [data-testid="stMetricLabel"] p {
             color: #8b949e !important;
         }
-        div[data-testid="stMetricValue"] div {
+
+        [data-testid="stMetricValue"] > div {
             color: #ffffff !important;
         }
     }
 
-    /* Subtle hover effect for a premium feel */
-    div[data-testid="stMetric"]:hover {
+    /* ===== HOVER EFFECT ===== */
+    [data-testid="stMetric"]:hover {
         border-color: #00a0e9 !important;
-        transition: 0.2s ease-in-out;
+        transform: translateY(-1px);
+        transition: all 0.2s ease-in-out;
+        box-shadow: 0 4px 12px rgba(0,160,233,0.15) !important;
     }
 </style>
 """, unsafe_allow_html=True)
