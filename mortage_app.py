@@ -102,7 +102,7 @@ for i in range(1, int(number_of_payments) + 1):
     schedule.append({
         "Month": i,
         "Payment Date": (origination_date + relativedelta(months=i)).strftime("%Y-%m-%d"),
-        "Payment": realized_payment
+        "Payment": realized_payment,
         "Interest Expense": int_exp,
         "Capital Amortization": cap_amort,
         "Ending Balance": rem_bal
