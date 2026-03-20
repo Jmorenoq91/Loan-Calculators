@@ -61,7 +61,7 @@ with st.sidebar:
         down_payment_pct = st.slider("Down Payment %", 10, 90, 20)
         annual_interest_rate = st.number_input("Annual Interest Rate (%)", min_value=0.0, value=5.0, step=0.1)
         loan_term_years = st.slider("Loan Term (Years)", 5, 30, 20, step=5)
-        #extra_payment = st.number_input("Extra Payment ($)", min_value=0.0, value=0, step=10.0)
+        extra_payment = st.number_input("Extra Payment ($)", min_value=0.0, value=0, step=10.0)
 
 # --- Financial Calculations ---
 extra_payment = 0
