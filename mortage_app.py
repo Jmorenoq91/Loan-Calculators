@@ -10,6 +10,7 @@ from fpdf import FPDF
 st.set_page_config(page_title="Mortgage Pro 🏠", layout="wide")
 
 # --# --- Adaptive CSS (Tailor-made for Light & Dark Contrast) ---
+# --- Adaptive CSS (Tailor-made for Light & Dark Contrast) ---
 st.markdown("""
 <style>
     /* 1. DEFAULT (LIGHT MODE) SETTINGS */
@@ -57,7 +58,9 @@ st.markdown("""
         transition: 0.2s ease-in-out;
     }
 </style>
-""", unsafe_allow_html=True)- Adaptive CSS (Universal Mode) ---
+""", unsafe_allow_html=True)
+
+
 
 st.title("🏠 Mortgage Calculator")
 
