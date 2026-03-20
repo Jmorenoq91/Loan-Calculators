@@ -9,45 +9,42 @@ from fpdf import FPDF
 # --- Page Config ---
 st.set_page_config(page_title="Mortgage Pro 🏠", layout="wide")
 
-
 # --- Adaptive CSS (Universal Mode) ---
 st.markdown("""
 <style>
-    /* 1. Metric Container: Uses adaptive background and border */
+    /* 1. DEFAULT / LIGHT MODE SETTINGS */
     div[data-testid="stMetric"] {
-        background-color: var(--secondary-background-color) !important;
-        border: 1px solid var(--border-color) !important;
-        border-left: 5px solid #00a0e9 !important; /* Your signature blue line */
+        background-color: #f0f2f6 !important; /* Soft light gray for contrast on white */
+        border: 1px solid #dcdfe4 !important;
+        border-left: 5px solid #00a0e9 !important;
         border-radius: 10px !important;
         padding: 15px 20px !important;
-        box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px !important;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
     }
 
-    /* 2. KPI Labels: Ensures text contrast is correct */
-    div[data-testid="stMetricLabel"] p {
-        color: var(--text-color) !important;
-        font-size: 0.8rem !important;
-        font-weight: 600 !important;
-        text-transform: uppercase !important;
-        opacity: 0.7; /* Softens the label vs the value */
-    }
-
-    /* 3. KPI Values: Large and readable */
     div[data-testid="stMetricValue"] div {
-        color: var(--text-color) !important;
-        font-size: 1.8rem !important;
-        font-weight: 700 !important;
+        color: #1c1e21 !important; /* High contrast dark text */
     }
 
-    /* 4. Fix for charts in light mode: ensuring titles are visible */
-    .stMarkdown h2, .stMarkdown h3 {
-        color: var(--text-color) !important;
+    div[data-testid="stMetricLabel"] p {
+        color: #5f6368 !important; /* Muted gray label */
     }
 
-    /* 5. Optional: Subtle hover effect for the tiles */
-    div[data-testid="stMetric"]:hover {
-        border-color: #00a0e9 !important;
-        transition: 0.3s ease;
+    /* 2. DARK MODE OVERRIDE */
+    @media (prefers-color-scheme: dark) {
+        div[data-testid="stMetric"] {
+            background-color: #161b22 !important; /* Your original original dark gray */
+            border: 1px solid #30363d !important;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3) !important;
+        }
+
+        div[data-testid="stMetricValue"] div {
+            color: #ffffff !important;
+        }
+
+        div[data-testid="stMetricLabel"] p {
+            color: #8b949e !important;
+        }
     }
 </style>
 """, unsafe_allow_html=True)
